@@ -21,8 +21,12 @@ sudo chmod +x ./dependencies.sh
 ./dependencies.sh
 
 #---------------TMUX---------------
-def_tmux='if [[ ! $TERM =~ screen ]]; then
-	exec tmux
+def_tmux='if [[ -z "$TMUX" ]]; then
+	if tmux has-session 2>/dev/null; then
+		exec tmux attach
+	else
+		exec tmux
+	fi
 fi'
 append_to_file "$def_tmux" ~/.bashrc "Automatically init tmux when open terminal"
 
