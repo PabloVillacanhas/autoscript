@@ -22,6 +22,7 @@ sudo chmod +x ./dependencies.sh
 ./dependencies.sh
 
 #---------------TMUX---------------
+echo "----------TMUX---------"
 def_tmux='if [[ -z "$TMUX" ]]; then
 	if tmux has-session 2>/dev/null; then
 		exec tmux attach
@@ -32,9 +33,9 @@ fi'
 append_to_file "$def_tmux" ~/.bashrc "Automatically init tmux when open terminal"
 
 mouse_tmux='set -g mouse on'
-append_to_file "$mouse_tmux" ~/.tmux.conf "Set mouse interaction in tmux"
+append_to_file "$mouse_tmux" ~/.tmux.conf "Set mouse interaction"
 
-term='set -g default-terminal "tmux-256color"'
-append_to_file "$term" ~/.tmux.conf "Set correct terminal in tmux"
+term='set -s escape-time 0'
+append_to_file "$term" ~/.tmux.conf "Set escape timeout to 0 to improve Vim"
 
 #-----------
