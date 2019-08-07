@@ -32,10 +32,5 @@ def_tmux='if [[ -z "$TMUX" ]]; then
 fi'
 append_to_file "$def_tmux" ~/.bashrc "Automatically init tmux when open terminal"
 
-mouse_tmux='set -g mouse on'
-append_to_file "$mouse_tmux" ~/.tmux.conf "Set mouse interaction"
-
-term='set -s escape-time 0'
-append_to_file "$term" ~/.tmux.conf "Set escape timeout to 0 to improve Vim"
-
+cp .tmux.conf $HOME/.tmux.conf
 #-----------
