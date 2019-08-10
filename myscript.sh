@@ -37,7 +37,7 @@ append_to_file () {
 sudo chmod +x ./dependencies.sh
 ./dependencies.sh
 
-#---------------TMUX---------------
+#--------------------TMUX----------------------
 echo "----------TMUX---------"
 def_tmux='if [[ -z "$TMUX" ]]; then
 	if tmux has-session 2>/dev/null; then
@@ -49,4 +49,7 @@ fi'
 append_to_file "$def_tmux" $BASH_FILE "Automatically init tmux when open terminal"
 
 cp .tmux.conf $HOME/.tmux.conf
-#-----------
+
+#---------------------GIT----------------------
+cp .gitconfig $HOME/.gitconfig
+
