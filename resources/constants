@@ -1,0 +1,6 @@
+#No root privileges
+declare NO_ROOT=1
+#Task done
+declare TASK_DONE=100
+#Task already done
+declare TASK_ADONE=101
