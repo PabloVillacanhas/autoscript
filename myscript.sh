@@ -1,6 +1,12 @@
 #!/bin/bash
 
 #---------------COMMON FUNCTIONS --------------
+<<APPEND_TO_FILE
+This method appends some string ONLY if it is not present yet 
+	1-String to append
+	2-File
+	3-Task description
+APPEND_TO_FILE
 append_to_file () {
 	if [ ! -f "$2" ]
 	then
@@ -21,16 +27,18 @@ append_to_file () {
 sudo chmod +x ./dependencies.sh
 ./dependencies.sh
 
-#---------------TMUX---------------
-echo "----------TMUX---------"
-def_tmux='if [[ -z "$TMUX" ]]; then
-	if tmux has-session 2>/dev/null; then
-		exec tmux attach
-	else
-		exec tmux
-	fi
-fi'
-append_to_file "$def_tmux" ~/.bashrc "Automatically init tmux when open terminal"
+#---------------ZSH---------------
+# Configure zsh via oh my zsh!
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# Spaceship plugin & others
+npm install -g spaceship-prompt
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+append_to_file 'ZSH_THEME="spaceship"' $HOME/.zshrc "Spaceship setted as the ZSH theme"
 
-cp .tmux.conf $HOME/.tmux.conf
-#-----------
+
+# Set ZSH as default shell
+chsh -s $(which zsh)
+sed -ri "^\${USER}s@/bin/bash@/usr/bin/zsh/g" /etc/passwd
+
+#LOGOUT to let thing take effect
