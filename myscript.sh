@@ -1,5 +1,21 @@
 #!/bin/bash
 
+. resources/constants
+. resources/colors
+
+#------------GLOBAL_VARS & CONSTANTS-----------
+readonly DIST=$(echo $(uname -v) | cut -d" " -f3)
+readonly BASH_FILE=`[[ "$DIST" == "Debian" ]] && echo "$HOME/.bash_profiles" || echo "$HOME/.bashrc"`
+
+#--------------------USER----------------------
+printf "%b" "You are $BGreen$(whoami)$Coloroff under $BYellow$DIST$Coloroff distribution are you sure yo want to continue? y/n " 
+read response
+if [ $response == 'y' ]; then 
+	: 
+else
+	exit 0
+fi
+
 #---------------COMMON FUNCTIONS --------------
 <<APPEND_TO_FILE
 This method appends some string ONLY if it is not present yet 
@@ -16,7 +32,7 @@ append_to_file () {
 	local string_exists=$( grep "$1" $2 ) 
 	if [ -z "$string_exists" ] 
 	then
-		echo -e "$1" >> $2
+		echo "$1" >> $2
 		echo "$3 DONE"
 	else
 		echo "$3 already done"
@@ -27,7 +43,7 @@ append_to_file () {
 sudo chmod +x ./dependencies.sh
 ./dependencies.sh
 
-#---------------ZSH---------------
+#---------------------ZSH----------------------
 # Configure zsh via oh my zsh!
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # Spaceship plugin & others
@@ -40,4 +56,9 @@ cp terminal/oh-my-zsh.sh $ZSH
 chsh -s $(which zsh)
 sed -ri "/^\${USER}s@/bin/bash@/usr/bin/zsh/g" /etc/passwd
 
-#LOGOUT to let things take effect
+#---------------------TMUX---------------------
+cp .tmux.conf $HOME/.tmux.conf
+
+#---------------------GIT----------------------
+cp .gitconfig $HOME/.gitconfig
+
