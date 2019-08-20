@@ -31,14 +31,13 @@ sudo chmod +x ./dependencies.sh
 # Configure zsh via oh my zsh!
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # Spaceship plugin & others
-npm install -g spaceship-prompt
-git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+git clone https://github.com/denysdovhan/spaceship-prompt.git $ZSH_CUSTOM/themes/spaceship-prompt
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-append_to_file 'ZSH_THEME="spaceship"' $HOME/.zshrc "Spaceship setted as the ZSH theme"
 
-
+cp terminal/.zshrc $HOME/.zshrc
+cp terminal/oh-my-zsh.sh $ZSH
 # Set ZSH as default shell
 chsh -s $(which zsh)
-sed -ri "^\${USER}s@/bin/bash@/usr/bin/zsh/g" /etc/passwd
+sed -ri "/^\${USER}s@/bin/bash@/usr/bin/zsh/g" /etc/passwd
 
-#LOGOUT to let thing take effect
+#LOGOUT to let things take effect
