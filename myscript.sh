@@ -54,7 +54,7 @@ cp terminal/.zshrc $HOME/.zshrc
 cp terminal/oh-my-zsh.sh $ZSH
 # Set ZSH as default shell
 chsh -s $(which zsh)
-sed -ri "/^\${USER}s@/bin/bash@/usr/bin/zsh/g" /etc/passwd
+sed -ri "/^${USER}/s@/bin/bash@/usr/bin/zsh@g" /etc/passwd
 
 #---------------------TMUX---------------------
 cp .tmux.conf $HOME/.tmux.conf
