@@ -2,46 +2,27 @@
 
 . resources/constants
 . resources/colors
+. utils/fileutils.sh
 
 #------------GLOBAL_VARS & CONSTANTS-----------
 readonly DIST=$(echo $(uname -v) | cut -d" " -f3)
-readonly BASH_FILE=`[[ "$DIST" == "Debian" ]] && echo "$HOME/.bash_profiles" || echo "$HOME/.bashrc"`
+readonly BASH_FILE=$([[ "$DIST" == "Debian" ]] && echo "$HOME/.bash_profiles" || echo "$HOME/.bashrc")
 
 #--------------------USER----------------------
-printf "%b" "You are $BGreen$(whoami)$Coloroff under $BYellow$DIST$Coloroff distribution are you sure yo want to continue? y/n " 
+printf "%b" "You are $BGreen$(whoami)$Coloroff under $BYellow$DIST$Coloroff distribution are you sure yo want to continue? y/n "
 read response
-if [ $response == 'y' ]; then 
-	: 
+if [ $response == 'y' ]; then
+	:
 else
 	exit 0
 fi
 
-#---------------COMMON FUNCTIONS --------------
-<<APPEND_TO_FILE
-This method appends some string ONLY if it is not present yet 
-	1-String to append
-	2-File
-	3-Task description
-APPEND_TO_FILE
-append_to_file () {
-	if [ ! -f "$2" ]
-	then
-		touch "$2"
-	fi
-
-	local string_exists=$( grep "$1" $2 ) 
-	if [ -z "$string_exists" ] 
-	then
-		echo "$1" >> $2
-		echo "$3 DONE"
-	else
-		echo "$3 already done"
-	fi
-}
-
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
-sudo chmod +x ./dependencies.sh
-./dependencies.sh
+sudo chmod +x ./dependencies/apt/dependencies.sh
+./dependencies/apt/dependencies.sh
+
+#----------MANAGE GIT REPOSITORIES-------------
+./dependencies/git/dependencies.sh
 
 #---------------------ZSH----------------------
 # Configure zsh via oh my zsh!
@@ -61,4 +42,3 @@ cp .tmux.conf $HOME/.tmux.conf
 
 #---------------------GIT----------------------
 cp .gitconfig $HOME/.gitconfig
-
