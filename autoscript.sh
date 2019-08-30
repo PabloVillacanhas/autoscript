@@ -38,7 +38,7 @@ chsh -s $(which zsh)
 sed -ri "/^${USER}/s@/bin/bash@/usr/bin/zsh@g" /etc/passwd
 
 #---------------------TMUX---------------------
-cp .tmux.conf $HOME/.tmux.conf
+cp configfiles/.tmux.conf $HOME/.tmux.conf
 
 #---------------------GIT----------------------
-cp .gitconfig $HOME/.gitconfig
+cp configfiles/.gitconfig $HOME/.gitconfig
