@@ -1,1 +1,4 @@
-asdf_v=v0.7.2
+asdf_v="v0.7.2"
+asdf_repo="asdf-vm/asdf"
+
+spaceship_repo="https://github.com/denysdovhan/spaceship-prompt"
