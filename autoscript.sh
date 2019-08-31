@@ -2,22 +2,22 @@
 
 . resources/constants
 . resources/colors
+. resources/texts
 . utils/fileutils.sh
+. utils/ioutils.sh
 
 #------------GLOBAL_VARS & CONSTANTS-----------
 readonly DIST=$(echo $(uname -v) | cut -d" " -f3)
 
 #--------------------USER----------------------
-printf "%b" "You are $BGreen$(whoami)$Coloroff under $BYellow$DIST$Coloroff distribution are you sure yo want to continue? y/n "
-read response
-if [ $response == 'y' ]; then
-	:
-else
-	exit 0
+ask_confirmation $auth
+echo "$?"
+if [[ $? == 1 ]]; then
+	echo "no confirmado"
+	exit 1
 fi
 
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
-sudo chmod +x ./dependencies/apt/dependencies.sh
 ./dependencies/apt/dependencies.sh
 
 #----------MANAGE GIT REPOSITORIES-------------
