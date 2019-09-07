@@ -2,7 +2,7 @@
 
 read -p "Do you want to install dependencies? [Y/n] " response
 
-if [[ $respons =~ ^[yY][eE][sS]|[yY]+$ ]]; then
+if [[ $response =~ ^[yY][eE][sS]|[yY]+$ ]]; then
 	sudo apt update && sudo apt upgrade
 
 	sudo apt install \

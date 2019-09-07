@@ -1,8 +1,8 @@
 #!/bin/bash
 
-. /home/pablo/autoscript/utils/fileutils.sh
-. /home/pablo/autoscript/utils/systemutils.sh
-. $(pwd)/versions
+. $AUTOSCRIPT_PATH/utils/fileutils.sh
+. $AUTOSCRIPT_PATH/utils/systemutils.sh
+. $AUTOSCRIPT_PATH/dependencies/git/versions
 
 api_github="https://api.github.com/repos/"
 
