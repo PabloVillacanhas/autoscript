@@ -1,51 +1,65 @@
 #!/bin/bash
 
-. utils/fileutils.sh
-. utils/systemutils.sh
-. versions
+. /home/pablo/autoscript/utils/fileutils.sh
+. /home/pablo/autoscript/utils/systemutils.sh
+. $(pwd)/versions
 
-api_repos="https://api.github.com/repos/"
+api_github="https://api.github.com/repos/"
 
 <<DOWNLOAD_REPO_VERSION
 This method updates a repository at above specified version if it is not yet  
-	$1-Repository url (absolute)
+	$1-Repository name
     $2-Local repository path
-    $3-Version tag
+    $3-Version release 
 DOWNLOAD_REPO_VERSION
 download_repo_version() {
-    repo=$(curl -s "$api_repos$1" | grep -oP '"clone_url": "\K(.*)(?=")')
-    if [ ! -f $2 ]; then
-        mkdir $2
-        git clone repo --branch $3 --depth 1
-        echo "$repo repository cloned in $2"
-        return
+    repo=$(curl -s "$api_github$1" | grep -oP '"clone_url": "\K(.*)(?=")')
+    version=$3
+    if [[ $3 == "latest" ]];then
+	    version=`curl --silent "$api_github$1/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")'`
+    fi
+    repository_exists $2
+    if [[ $? == 0 ]]; then
+	    git -c advice.detachedHead=false clone --quiet --branch $version --depth 1 $repo $2
+	    echo "$repo repository cloned in $2"
     else
-        cd $2
-        if [ $(git tag --points-at HEAD) != $3 ]; then
-            git pull $3
-            echo "$repo now on $3"
+        if [[ $(git -C $2 tag --points-at HEAD) != $version ]]; then
+            git -C $2 pull $version 
+    else
+	    echo "$1 already in the desired version"
         fi
     fi
 }
 
-<<DOWNLOAD_LATEST_REPO_VERSION
-This method updates a repository to the last release version
-	$1-Repository url (absolute)
-    $2-Local repository path
-DOWNLOAD_LATEST_REPO_VERSION
-download_latest_repo_version() {
-    version=$(curl -s "$api_repos$1/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
-    git -C $2 pull $version
+<<REPO_EXISTS
+This method checks if repository already exists.
+It also creates the path to directory if not exists
+	$1-Local path to repository
+Returns 0-Repo does not exists 
+	1-Repo exists
+REPO_EXISTS
+repository_exists() {
+	if [ ! -d $1 ];then
+		mkdir -p $1
+		return 0
+	else
+		if [ ! -d "$1/.git" ]; then
+			return 0
+		else
+			return 1
+		fi
+	fi
 }
 
 #asdf
-if [ command_not_exists asdf ]; then
-    download_latest_repo_version "$asdf_repo" $HOME/.asdf $asdf_v
-    append_to_file_if_not_exists "$HOME/.asdf/asdf.sh" $HOME/.zshrc "Import source functions of asdf to zsh"
-    append_to_file_if_not_exists "$HOME/.asdf/completions/asdf.bash" "Allow completion of asdf in zsh" >>~/.zshrc
+if [ -n `command_not_exists asdf` ]; then
+	download_repo_version "$asdf_repo" $HOME/.asdf $asdf_v
+	append_to_file_if_not_exists "$HOME/.asdf/asdf.sh" $HOME/.zshrc "Import source functions of asdf to zsh"
+	append_to_file_if_not_exists "$HOME/.asdf/completions/asdf.bash" $HOME/.zshrc "Allow completion of asdf in zsh" 
+	chmod +x $HOME/.asdf/asdf.sh
+	chmod +x $HOME/.asdf/completions/asdf.bash
 fi
 
 #spaceship plugin
-if ! [ -d $ZSH_CUSTOM/themes/spaceship-prompt ]; then
-    download_latest_repo_version $spaceship_repo $ZSH_CUSTOM/themes/spaceship-prompt
-fi
+download_repo_version $spaceship_repo $ZSH_CUSTOM/themes/spaceship $spaceship_v
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 2> /dev/null

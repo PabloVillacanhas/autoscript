@@ -9,5 +9,5 @@ COMMAND_NOT_EXISTS
 command_not_exists () {
     #Command send to stdout the location of the program if it exists.
     #If nothing is sent neither stdout nor stderr(program does not exist), the pipe reaches the || operator and echoes something
-    command -v $2 >/dev/null 2>&1 || echo "1"
+    command -v $1 >/dev/null 2>&1 || echo "1"
 }
