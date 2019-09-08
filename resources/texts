@@ -1,0 +1,1 @@
+auth="You are $BGreen$(whoami)$Coloroff under $BYellow$DIST$Coloroff distribution. Are you sure yo want to continue? Y/n"
