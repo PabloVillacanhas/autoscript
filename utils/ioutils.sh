@@ -1,25 +1,20 @@
-. $AUTOSCRIPT_PATH/resources/colors
+#!/bin/bash
 
-#Abstraction of queries about perform actions
-ask_confirmation() {
-    echo "$2"
-    read res
-    if [[ res =~ [Yy][Ee][Ss] || -x $res ]]; then
-        return 1
-    else
-        return 0
-    fi
-}
+. $AUTOSCRIPT_PATH/resources/colors
 
 <<REQUEST_CONFIRMATION
 Request confirmation.
 $1-Sentence before confirmation
 Returns
 0-Confirmation aproved
-1-COnfirmation ddenied
+1-Confirmation denied
 REQUEST_CONFIRMATION
 request_confirmation(){
-	printf "%b" "$1"
-	read response
-	echo "$response"
+	printf "%b" "$1 [Y/n]"
+	read res
+	if [[ $res =~ [Yy][Ee][Ss] || $res =~ ^[Yy]$ || -z $res ]]; then
+		return 0
+	else
+		return 1
+	fi
 }
