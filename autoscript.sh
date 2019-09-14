@@ -21,10 +21,7 @@ if [[ -z $ZSH ]]; then
 else
 	upgrade_oh_my_zsh
 fi
-cp terminal/.zshrc $HOME/.zshrc
-source $HOME/.zshrc
-cp terminal/oh-my-zsh.sh $ZSH
-source $HOME/oh-my-zsh.sh $ZSH
+terminal/initconf.sh
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
 sudo chmod +x ./dependencies/apt/dependencies.sh
 ./dependencies/apt/dependencies.sh
