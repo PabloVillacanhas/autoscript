@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 #!/bin/bash
 
 . $AUTOSCRIPT_PATH/utils/ioutils.sh
@@ -9,3 +10,8 @@ if [[ $? == 0 ]];then
 else
 	echo "Not confirmed"
 if
+=======
+. $AUTOSCRIPT_PATH/utils/ioutils.sh
+
+request_confirmation "Hello $BGreen$(whoami)$Coloroff "
+>>>>>>> Stashed changes
