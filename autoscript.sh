@@ -1,8 +1,10 @@
 #!/bin/bash
+AUTOSCRIPT_PATH=~/.autoscript
+
 . $AUTOSCRIPT_PATH/resources/constants
 . $AUTOSCRIPT_PATH/resources/colors
 . $AUTOSCRIPT_PATH/utils/fileutils.sh
-. $AUTOSCRIPT_PATH/utils/sytemutils.sh
+. $AUTOSCRIPT_PATH/utils/systemutils.sh
 
 #------------GLOBAL_VARS & CONSTANTS-----------
 readonly DIST=$(echo $(uname -v) | cut -d" " -f3)
