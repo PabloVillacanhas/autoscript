@@ -61,5 +61,5 @@ if [ -n `command_not_exists asdf` ]; then
 fi
 
 #spaceship plugin
-download_repo_version $spaceship_repo $ZSH_CUSTOM/themes/spaceship-prompt $spaceship_v
+download_repo_version $spaceship_repo "$ZSH_CUSTOM/themes/spaceship-prompt" $spaceship_v
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 2> /dev/null

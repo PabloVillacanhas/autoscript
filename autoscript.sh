@@ -1,6 +1,7 @@
 #!/bin/bash
-export AUTOSCRIPT_PATH=~/.autoscript
 
+cp configfiles/bashrc $HOME/.bashrc
+. $HOME/.bashrc
 . $AUTOSCRIPT_PATH/resources/constants
 . $AUTOSCRIPT_PATH/resources/colors
 . $AUTOSCRIPT_PATH/utils/fileutils.sh
@@ -20,9 +21,6 @@ fi
 if [[ -z $ZSH ]]; then
 	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	chsh -s $(which zsh)
-	#copy configuration files
-else
-	upgrade_oh_my_zsh
 fi
 terminal/initconf.sh
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
