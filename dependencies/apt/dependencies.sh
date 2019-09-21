@@ -3,9 +3,9 @@
 read -p "Do you want to install dependencies? [Y/n] " response
 
 if [[ $response =~ ^[yY][eE][sS]|[yY]+$ ]]; then
-	sudo apt update && sudo apt upgrade
+	sudo apt update && sudo apt upgrade -y
 
-	sudo apt install \
+	sudo apt install -y \
 		git \
 		tmux \
 		xclip \
@@ -15,7 +15,7 @@ if [[ $response =~ ^[yY][eE][sS]|[yY]+$ ]]; then
 		npm \
 		golang
 
-	sudo apt autoremove
+	sudo apt autoremove -y
 else
 	echo "Avoiding installing dependencies"
 fi
