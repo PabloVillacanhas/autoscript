@@ -13,7 +13,8 @@ if [[ $response =~ ^[yY][eE][sS]|[yY]+$ ]]; then
 		fonts-powerline \
 		zsh \
 		npm \
-		golang
+		golang \
+		fzf
 
 	sudo apt autoremove -y
 else
