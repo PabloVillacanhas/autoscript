@@ -12,7 +12,6 @@ if [[ $response =~ ^[yY][eE][sS]|[yY]+$ ]]; then
 		vim \
 		fonts-powerline \
 		zsh \
-		npm \
 		golang \
 		fzf
 
