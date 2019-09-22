@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. configfiles/bashrc
+. $HOME/.autoscript/configfiles/bashrc
 cp $AUTOSCRIPT_PATH/configfiles/bashrc $HOME/.bashrc
 . $HOME/.bashrc
 
