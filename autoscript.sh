@@ -1,16 +1,21 @@
 #!/bin/bash
+
+. configfiles/bashrc
+cp $AUTOSCRIPT_PATH/configfiles/bashrc $HOME/.bashrc
+. $HOME/.bashrc
+
 . $AUTOSCRIPT_PATH/resources/constants
 . $AUTOSCRIPT_PATH/resources/colors
+. $AUTOSCRIPT_PATH/utils/systemutils.sh
+. $AUTOSCRIPT_PATH/utils/ioutils.sh
 . $AUTOSCRIPT_PATH/utils/fileutils.sh
-. $AUTOSCRIPT_PATH/utils/sytemutils.sh
 
 #------------GLOBAL_VARS & CONSTANTS-----------
 readonly DIST=$(echo $(uname -v) | cut -d" " -f3)
 
 #--------------------USER----------------------
-printf "%b" "You are $BGreen$(whoami)$Coloroff under $BYellow$DIST$Coloroff distribution are you sure yo want to continue? y/n "
-read response
-if [[ ! $response == "y" ]]; then
+request_confirmation_default_y "You are $BGreen$(whoami)$Coloroff under $BYellow$DIST$Coloroff distribution are you sure yo want to continue?"
+if [[ $? == 1 ]]; then
 	exit 1
 fi
 
@@ -18,22 +23,23 @@ fi
 if [[ -z $ZSH ]]; then
 	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	chsh -s $(which zsh)
-else
-	upgrade_oh_my_zsh
 fi
-cp terminal/.zshrc $HOME/.zshrc
-source $HOME/.zshrc
-cp terminal/oh-my-zsh.sh $ZSH
-source $HOME/oh-my-zsh.sh $ZSH
+$AUTOSCRIPT_PATH/terminal/initconf.sh
+
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
-sudo chmod +x ./dependencies/apt/dependencies.sh
-./dependencies/apt/dependencies.sh
-
-#----------MANAGE GIT REPOSITORIES-------------
-./dependencies/git/dependencies.sh
-
+request_confirmation_default_y "Do you want to install dependencies?"
+if [[ $? == 0 ]]; then
+	./dependencies/apt/dependencies.sh
+	./dependencies/git/dependencies.sh
+	./dependencies/node/dependencies.sh
+fi
 #---------------------TMUX---------------------
-cp configfiles/.tmux.conf $HOME/.tmux.conf
+cp $AUTOSCRIPT_PATH/configfiles/.tmux.conf $HOME/.tmux.conf
 
 #---------------------GIT----------------------
-cp configfiles/.gitconfig $HOME/.gitconfig
+cp $AUTOSCRIPT_PATH/configfiles/.gitconfig $HOME/.gitconfig
+
+#-------------------SET AS COMMAND-------------
+if [[ ! -f "/usr/local/bin/autoscript"  ]]; then
+	sudo ln -s $AUTOSCRIPT_PATH/autoscript.sh /usr/local/bin/autoscript
+fi
