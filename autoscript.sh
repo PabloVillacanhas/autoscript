@@ -24,20 +24,22 @@ if [[ -z $ZSH ]]; then
 	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	chsh -s $(which zsh)
 fi
-terminal/initconf.sh
+$AUTOSCRIPT_PATH/terminal/initconf.sh
 
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
-./dependencies/apt/dependencies.sh
-./dependencies/node/dependencies.sh
-./dependencies/git/dependencies.sh
-
+request_confirmation_default_y "Do you want to install dependencies?"
+if [[ $? == 0 ]]; then
+	./dependencies/apt/dependencies.sh
+	./dependencies/git/dependencies.sh
+	./dependencies/node/dependencies.sh
+fi
 #---------------------TMUX---------------------
-cp configfiles/.tmux.conf $HOME/.tmux.conf
+cp $AUTOSCRIPT_PATH/configfiles/.tmux.conf $HOME/.tmux.conf
 
 #---------------------GIT----------------------
-cp configfiles/.gitconfig $HOME/.gitconfig
+cp $AUTOSCRIPT_PATH/configfiles/.gitconfig $HOME/.gitconfig
 
 #-------------------SET AS COMMAND-------------
 if [[ ! -f "/usr/local/bin/autoscript"  ]]; then
-sudo ln -s $AUTOSCRIPT_PATH/autoscript.sh /usr/local/bin/autoscript
+	sudo ln -s $AUTOSCRIPT_PATH/autoscript.sh /usr/local/bin/autoscript
 fi
