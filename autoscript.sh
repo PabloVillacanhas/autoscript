@@ -24,7 +24,7 @@ if [[ -z $ZSH ]]; then
 	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	chsh -s $(which zsh)
 fi
-$AUTOSCRIPT_PATH/tersdasminal/initconf.sh
+$AUTOSCRIPT_PATH/terminal/initconf.sh
 
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
 request_confirmation_default_y "Do you want to install dependencies?"
@@ -35,7 +35,7 @@ if [[ $? == 0 ]]; then
 fi
 #---------------------TMUX---------------------
 cp $AUTOSCRIPT_PATH/configfiles/.tmux.conf $HOME/.tmux.conf
-
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 #---------------------GIT----------------------
 cp $AUTOSCRIPT_PATH/configfiles/.gitconfig $HOME/.gitconfig
 

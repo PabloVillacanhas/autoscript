@@ -54,8 +54,8 @@ repository_exists() {
 #asdf
 if [ -n `command_not_exists asdf` ]; then
 	download_repo_version "$asdf_repo" $HOME/.asdf $asdf_v
-	append_to_file_if_not_exists "$HOME/.asdf/asdf.sh" $HOME/.zshrc "Import source functions of asdf to zsh"
-	append_to_file_if_not_exists "$HOME/.asdf/completions/asdf.bash" $HOME/.zshrc "Allow completion of asdf in zsh" 
+	append_to_file_if_not_exists ". $HOME/.asdf/asdf.sh" $HOME/.zshrc "Import source functions of asdf to zsh"
+	append_to_file_if_not_exists ". $HOME/.asdf/completions/asdf.bash" $HOME/.zshrc "Allow completion of asdf in zsh" 
 	chmod +x $HOME/.asdf/asdf.sh
 	chmod +x $HOME/.asdf/completions/asdf.bash
 fi
