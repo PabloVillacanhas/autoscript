@@ -29,13 +29,14 @@ $AUTOSCRIPT_PATH/terminal/initconf.sh
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
 request_confirmation_default_y "Do you want to install dependencies?"
 if [[ $? == 0 ]]; then
-	./dependencies/apt/dependencies.sh
-	./dependencies/git/dependencies.sh
-	./dependencies/node/dependencies.sh
+	$AUTOSCRIPT_PATH/dependencies/apt/dependencies.sh
+	$AUTOSCRIPT_PATH/dependencies/git/dependencies.sh
+	$AUTOSCRIPT_PATH/dependencies/node/dependencies.sh
 fi
+
 #---------------------TMUX---------------------
-cp $AUTOSCRIPT_PATH/configfiles/.tmux.conf $HOME/.tmux.conf
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+cp $AUTOSCRIPT_PATH/configfiles/tmux.conf $HOME/.tmux.conf
+
 #---------------------GIT----------------------
 cp $AUTOSCRIPT_PATH/configfiles/.gitconfig $HOME/.gitconfig
 

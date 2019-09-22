@@ -59,7 +59,6 @@ if [ -n `command_not_exists asdf` ]; then
 	chmod +x $HOME/.asdf/asdf.sh
 	chmod +x $HOME/.asdf/completions/asdf.bash
 fi
-cp $AUTOSCRIPT_PATH/configfiles/tool-versions $HOME/.tool-version
 
 #spaceship plugin
 download_repo_version $spaceship_repo "$ZSH_CUSTOM/themes/spaceship-prompt" $spaceship_v
