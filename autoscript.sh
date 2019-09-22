@@ -37,3 +37,6 @@ cp configfiles/.tmux.conf $HOME/.tmux.conf
 
 #---------------------GIT----------------------
 cp configfiles/.gitconfig $HOME/.gitconfig
+
+#-------------------SET AS COMMAND-------------
+sudo ln -s $AUTOSCRIPT_PATH/autoscript.sh /usr/local/bin/autoscript
