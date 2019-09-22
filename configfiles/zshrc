@@ -97,5 +97,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
+
 . /home/pablo/.asdf/asdf.sh
 . /home/pablo/.asdf/completions/asdf.bash
