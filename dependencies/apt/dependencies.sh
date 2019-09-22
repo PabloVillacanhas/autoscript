@@ -1,22 +1,15 @@
 #!/bin/bash
+sudo apt update && sudo apt upgrade -y
 
-read -p "Do you want to install dependencies? [Y/n] " response
+sudo apt install -y \
+	git \
+	tmux \
+	xclip \
+	vim \
+	fonts-powerline \
+	zsh \
+	golang \
+	fzf
 
-if [[ $response =~ ^[yY][eE][sS]|[yY]+$ ]]; then
-	sudo apt update && sudo apt upgrade -y
-
-	sudo apt install -y \
-		git \
-		tmux \
-		xclip \
-		vim \
-		fonts-powerline \
-		zsh \
-		golang \
-		fzf
-
-	sudo apt autoremove -y
-else
-	echo "Avoiding installing dependencies"
-fi
+sudo apt autoremove -y
 

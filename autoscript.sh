@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cp configfiles/bashrc $HOME/.bashrc
+. configfiles/bashrc
+cp $AUTOSCRIPT_PATH/configfiles/bashrc $HOME/.bashrc
 . $HOME/.bashrc
+
 . $AUTOSCRIPT_PATH/resources/constants
 . $AUTOSCRIPT_PATH/resources/colors
 . $AUTOSCRIPT_PATH/utils/fileutils.sh
@@ -25,11 +27,10 @@ fi
 terminal/initconf.sh
 
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
-sudo chmod +x ./dependencies/apt/dependencies.sh
+
+#----------MANAGE OTHER REPOSITORIES-------------
 ./dependencies/apt/dependencies.sh
 ./dependencies/node/dependencies.sh
-
-#----------MANAGE GIT REPOSITORIES-------------
 ./dependencies/git/dependencies.sh
 
 #---------------------TMUX---------------------
@@ -39,4 +40,6 @@ cp configfiles/.tmux.conf $HOME/.tmux.conf
 cp configfiles/.gitconfig $HOME/.gitconfig
 
 #-------------------SET AS COMMAND-------------
+if [[ ! -f "/usr/local/bin/autoscript"  ]]; then
 sudo ln -s $AUTOSCRIPT_PATH/autoscript.sh /usr/local/bin/autoscript
+fi
