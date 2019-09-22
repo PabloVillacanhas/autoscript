@@ -23,10 +23,12 @@ if [[ -z $ZSH ]]; then
 	chsh -s $(which zsh)
 fi
 terminal/initconf.sh
+
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
 sudo chmod +x ./dependencies/apt/dependencies.sh
 ./dependencies/apt/dependencies.sh
 ./dependencies/node/dependencies.sh
+
 #----------MANAGE GIT REPOSITORIES-------------
 ./dependencies/git/dependencies.sh
 
