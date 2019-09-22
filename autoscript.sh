@@ -1,11 +1,14 @@
 #!/bin/bash
-export AUTOSCRIPT_PATH=$(pwd)
+
+. configfiles/bashrc
+cp $AUTOSCRIPT_PATH/configfiles/bashrc $HOME/.bashrc
+. $HOME/.bashrc
+
 . $AUTOSCRIPT_PATH/resources/constants
 . $AUTOSCRIPT_PATH/resources/colors
 . $AUTOSCRIPT_PATH/utils/systemutils.sh
 . $AUTOSCRIPT_PATH/utils/ioutils.sh
 . $AUTOSCRIPT_PATH/utils/fileutils.sh
-#. $AUTOSCRIPT_PATH/utils/sytemutils.sh
 
 #------------GLOBAL_VARS & CONSTANTS-----------
 readonly DIST=$(echo $(uname -v) | cut -d" " -f3)
@@ -20,13 +23,12 @@ fi
 if [[ -z $ZSH ]]; then
 	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	chsh -s $(which zsh)
-else
-	upgrade_oh_my_zsh
 fi
+terminal/initconf.sh
+
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
 ./dependencies/apt/dependencies.sh
-
-#----------MANAGE GIT REPOSITORIES-------------
+./dependencies/node/dependencies.sh
 ./dependencies/git/dependencies.sh
 
 #---------------------TMUX---------------------
@@ -34,3 +36,8 @@ cp configfiles/.tmux.conf $HOME/.tmux.conf
 
 #---------------------GIT----------------------
 cp configfiles/.gitconfig $HOME/.gitconfig
+
+#-------------------SET AS COMMAND-------------
+if [[ ! -f "/usr/local/bin/autoscript"  ]]; then
+sudo ln -s $AUTOSCRIPT_PATH/autoscript.sh /usr/local/bin/autoscript
+fi

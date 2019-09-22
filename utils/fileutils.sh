@@ -1,3 +1,4 @@
+#!/bin/bash
 <<APPEND_TO_FILE
 This method appends some string ONLY if it is not present yet 
 	$1-String to append
