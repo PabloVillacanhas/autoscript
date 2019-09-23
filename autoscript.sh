@@ -37,6 +37,7 @@ fi
 
 #---------------------TMUX---------------------
 cp $AUTOSCRIPT_PATH/configfiles/tmux.conf $HOME/.tmux.conf
+tmux source-file ~/.tmux.conf
 
 #---------------------GIT----------------------
 cp $AUTOSCRIPT_PATH/configfiles/.gitconfig $HOME/.gitconfig
