@@ -27,6 +27,7 @@ fi
 $AUTOSCRIPT_PATH/terminal/initconf.sh
 
 #-----UPDATE UPGRADE AND INSTALL PACKAGES------
+cp $AUTOSCRIPT_PATH/configfiles/tool-versions $HOME/.tool-versions
 request_confirmation_default_y "Do you want to install dependencies?"
 if [[ $? == 0 ]]; then
 	$AUTOSCRIPT_PATH/dependencies/apt/dependencies.sh

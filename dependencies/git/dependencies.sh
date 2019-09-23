@@ -23,9 +23,10 @@ download_repo_version() {
 	    git -c advice.detachedHead=false clone --quiet --branch $version --depth 1 $repo $2
 	    echo "$repo repository cloned in $2"
     else
-        if [[ $(git -C $2 tag --points-at HEAD) != $version ]]; then
-            git -C $2 pull $version 
-    else
+	if [[ $(git -C $2 tag --points-at HEAD) != $version ]]; then
+		    git -C $2 pull
+		    git checkout $version
+	else
 	    echo "$1 already in the desired version"
         fi
     fi
