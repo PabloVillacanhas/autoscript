@@ -2,7 +2,6 @@
 
 . $HOME/.autoscript/configfiles/bashrc
 cp $AUTOSCRIPT_PATH/configfiles/bashrc $HOME/.bashrc
-. $HOME/.bashrc
 
 . $AUTOSCRIPT_PATH/resources/constants
 . $AUTOSCRIPT_PATH/resources/colors
@@ -36,7 +35,6 @@ if [[ $? == 0 ]]; then
 fi
 
 #---------------------TMUX---------------------
-cp $AUTOSCRIPT_PATH/configfiles/tmux.conf $HOME/.tmux.conf
 tmux source-file ~/.tmux.conf
 
 #---------------------GIT----------------------
