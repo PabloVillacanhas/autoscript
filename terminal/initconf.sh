@@ -5,5 +5,5 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm &> /dev/null
 cp $AUTOSCRIPT_PATH/terminal/zshrc $HOME/.zshrc
 . $HOME/.zshrc
-cp $AUTOSCRIPT_PATH/terminal/oh-my-zsh.sh $ZSH
+cp $AUTOSCRIPT_PATH/terminal/oh-my-zsh.sh $ZSH/oh-my-zsh.sh
 . $ZSH/oh-my-zsh.sh
