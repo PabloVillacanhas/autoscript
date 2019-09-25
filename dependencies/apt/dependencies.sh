@@ -9,7 +9,8 @@ sudo apt install -y \
 	fonts-powerline \
 	zsh \
 	golang \
-	fzf
+	fzf \
+	postgresql-client-*
 
 sudo apt autoremove -y
 
