@@ -10,7 +10,8 @@ sudo apt install -y \
 	zsh \
 	golang \
 	fzf \
-	postgresql-client-*
+	postgresql-client-* \
+	flatpak
 
 sudo apt autoremove -y
 
