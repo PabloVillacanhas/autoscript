@@ -32,6 +32,7 @@ if [[ $? == 0 ]]; then
 	$AUTOSCRIPT_PATH/dependencies/apt/dependencies.sh
 	$AUTOSCRIPT_PATH/dependencies/git/dependencies.sh
 	$AUTOSCRIPT_PATH/dependencies/node/dependencies.sh
+	$AUTOSCRIPT_PATH/dependencies/flatpak/dependencies.sh
 fi
 
 #---------------------TMUX---------------------
