@@ -1,3 +1,0 @@
-#!/bin/bash
-export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
-export AUTOSCRIPT_PATH="$HOME/.autoscript"

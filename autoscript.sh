@@ -1,7 +1,9 @@
 #!/bin/bash
 
-. $HOME/.autoscript/configfiles/bashrc
-cp $AUTOSCRIPT_PATH/configfiles/bashrc $HOME/.bashrc
+if [[ ! -f ~/.zshrc  ]]; then
+	#Need revisitor for first instalation
+	. terminal/zshrc
+fi
 
 . $AUTOSCRIPT_PATH/resources/constants
 . $AUTOSCRIPT_PATH/resources/colors
@@ -11,9 +13,15 @@ cp $AUTOSCRIPT_PATH/configfiles/bashrc $HOME/.bashrc
 
 #------------GLOBAL_VARS & CONSTANTS-----------
 readonly DIST=$(echo $(uname -v) | cut -d" " -f3)
+if [[ ! -f ~/.zprofile ]]; then
+	touch ~/.zprofile
+	echo "It has been just created an empty .zprofile file in your local"
+fi
+. ~/.zprofile
 
 #--------------------USER----------------------
-request_confirmation_default_y "You are $BGreen$(whoami)$Coloroff under $BYellow$DIST$Coloroff distribution are you sure yo want to continue?"
+export AUTOSCRIPT_PROFILE=$AUTOSCRIPT_PROFILE || "HOME"
+request_confirmation_default_y "You are $BGreen$(whoami)$Coloroff under $BYellow$DIST$Coloroff distribution at $BCyan$AUTOSCRIPT_PROFILE$Coloroff are you sure yo want to continue?"
 if [[ $? == 1 ]]; then
 	exit 1
 fi
