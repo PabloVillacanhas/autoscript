@@ -12,7 +12,9 @@ fi
 . $AUTOSCRIPT_PATH/utils/fileutils.sh
 
 #------------GLOBAL_VARS & CONSTANTS-----------
-readonly DIST=$(echo $(uname -v) | cut -d" " -f3)
+readonly VERSION=$(lsb_release -sr)
+readonly DIST=$(lsb_release -si)
+readonly DISTVERSION="$DIST $VERSION"
 if [[ ! -f ~/.zprofile ]]; then
 	touch ~/.zprofile
 	echo "It has been just created an empty .zprofile file in your local"
@@ -21,7 +23,7 @@ fi
 
 #--------------------USER----------------------
 export AUTOSCRIPT_PROFILE=$AUTOSCRIPT_PROFILE || "HOME"
-request_confirmation_default_y "You are $BGreen$(whoami)$Coloroff under $BYellow$DIST$Coloroff distribution at $BCyan$AUTOSCRIPT_PROFILE$Coloroff are you sure yo want to continue?"
+request_confirmation_default_y "You are $BGreen$(whoami)$Coloroff under $BYellow$DISTVERSION$Coloroff at $BCyan$AUTOSCRIPT_PROFILE$Coloroff are you sure yo want to continue?"
 if [[ $? == 1 ]]; then
 	exit 1
 fi
