@@ -15,11 +15,7 @@ fi
 readonly VERSION=$(lsb_release -sr)
 readonly DIST=$(lsb_release -si)
 readonly DISTVERSION="$DIST $VERSION"
-if [[ ! -f ~/.zprofile ]]; then
-	touch ~/.zprofile
-	echo "It has been just created an empty .zprofile file in your local"
-fi
-. ~/.zprofile
+sudo cp $AUTOSCRIPT_PATH/terminal/profile /etc/profile
 
 #--------------------USER----------------------
 export AUTOSCRIPT_PROFILE=$AUTOSCRIPT_PROFILE || "HOME"
@@ -44,6 +40,9 @@ if [[ $? == 0 ]]; then
 	$AUTOSCRIPT_PATH/dependencies/node/dependencies.sh
 	$AUTOSCRIPT_PATH/dependencies/flatpak/dependencies.sh
 fi
+
+#------------------SYNC APPS-------------------
+$AUTOSCRIPT_PATH/app/vscode/setup.sh
 
 #---------------------TMUX---------------------
 tmux source-file ~/.tmux.conf

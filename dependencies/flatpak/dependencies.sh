@@ -6,3 +6,5 @@ sudo flatpak install -y flathub com.visualstudio.code
 #sudo flatpak install -y flathub com.getpostman.Postman
 sudo flatpak install -y flathub org.libreoffice.LibreOffice
 sudo flatpak install -y flathub com.axosoft.GitKraken
+
+sudo ln -s /var/lib/flatpak/exports/bin/com.visualstudio.code /usr/bin/vscode
