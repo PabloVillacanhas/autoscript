@@ -96,6 +96,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias vscode="/var/lib/flatpak/exports/bin/com.visualstudio.code" 
-. /home/pablo/.asdf/asdf.sh
-. /home/pablo/.asdf/completions/asdf.bash
+alias two="xrandr --setprovideroutputsource 1 0"
