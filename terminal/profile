@@ -1,1 +1,2 @@
 export AUTOSCRIPT_PROFILE="HOME"
+export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
