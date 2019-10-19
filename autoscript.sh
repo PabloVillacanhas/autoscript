@@ -42,7 +42,7 @@ if [[ $? == 0 ]]; then
 fi
 
 #------------------SYNC APPS-------------------
-$AUTOSCRIPT_PATH/app/vscode/setup.sh
+$AUTOSCRIPT_PATH/apps/vscode/setup.sh
 
 #---------------------TMUX---------------------
 tmux source-file ~/.tmux.conf
