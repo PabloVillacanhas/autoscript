@@ -6,3 +6,4 @@ sudo flatpak install -y flathub io.dbeaver.DBeaverCommunity
 sudo flatpak install -y flathub org.libreoffice.LibreOffice
 sudo flatpak install -y flathub com.axosoft.GitKraken
 sudo flatpak install -y flathub com.spotify.Client
+sudo flatpak install -y flathub com.slack.Slack
