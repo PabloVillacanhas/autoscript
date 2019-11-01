@@ -1,0 +1,22 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "prettier.singleQuote": true,
+    "prettier.useTabs": true,
+    "prettier.jsxSingleQuote": true,
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback', 'MesloLGS NF'",
+    "editor.insertSpaces": false,
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "eslint.autoFixOnSave": true,
+    "scss.lint.float": "warning"
+}

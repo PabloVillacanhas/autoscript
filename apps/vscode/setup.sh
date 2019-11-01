@@ -5,4 +5,5 @@ for x in $extensions
 do
     code --install-extension $x
 done
+cp $AUTOSCRIPT_PATH/configfiles/vscode/user_settings.json $HOME/.config/Code/User/settings.json
 
