@@ -19,7 +19,9 @@ sudo apt install -y \
 	fzf \
 	postgresql-client-* \
 	flatpak \
-	code
+	code \
+	pulseaudio pulseaudio-module-bluetooth pavucontrol bluez-firmware
+
 
 sudo apt autoremove -y
 
