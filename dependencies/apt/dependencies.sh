@@ -21,6 +21,7 @@ sudo apt install -y \
 	flatpak \
 	code \
 	openvpn \
+	traceroute \
 	pulseaudio pulseaudio-module-bluetooth pavucontrol bluez-firmware
 
 
