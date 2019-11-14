@@ -20,6 +20,7 @@ sudo apt install -y \
 	postgresql-client-* \
 	flatpak \
 	code \
+	openvpn \
 	pulseaudio pulseaudio-module-bluetooth pavucontrol bluez-firmware
 
 
