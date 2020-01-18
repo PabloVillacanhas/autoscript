@@ -42,7 +42,7 @@ sudo apt install -y \
 	openvpn \
 	traceroute \
 	pulseaudio pulseaudio-module-bluetooth pavucontrol bluez-firmware \
-	libcurl3 virtualbox-6.0 \
+	#libcurl4 virtualbox-6.0 \
 	docker-ce docker-ce-cli containerd.io
 
 sudo apt autoremove -y
